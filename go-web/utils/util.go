@@ -9,6 +9,7 @@ import (
 	"io"
 	"os"
 	"runtime"
+	"runtime/debug"
 	"strconv"
 	"time"
 )
@@ -131,4 +132,8 @@ func GetStackInfo() string {
 		//funcName = filepath.Base(funcName)           // /full/path/basename.go => basename.go
 	}
 	return "funcName: " + funcName + "  line: " + strconv.FormatInt(int64(line), 10)
+}
+
+func GetDeepStackInfo() string {
+	return string(debug.Stack())
 }

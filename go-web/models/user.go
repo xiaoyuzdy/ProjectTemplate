@@ -10,6 +10,7 @@ var UserHandler = User{}
 type User struct {
 	Id          int64          `gorm:"column:id" json:"id"`
 	Account     string         `gorm:"column:account;type:varchar(55);comment:'账户'" json:"account"`
+	Password    string         `gorm:"column:password;type:varchar(15);comment:'密码'" json:"account"`
 	AccountType uint8          `gorm:"column:account_type;type:tinyint unsigned;default:1;comment:'1--> 普通用户，2-->会员'" json:"account_type"`
 	UserName    string         `gorm:"column:user_name;type:varchar(55);comment:'用户昵称'" json:"user_name"`
 	CreatedAt   utils.JSONTime `gorm:"column:created_at" json:"-"`
@@ -32,4 +33,8 @@ func (*User) QueryLastByWhere(user *User, query interface{}, args []interface{})
 func (*User) QueryBatchByWhere(query interface{}, args []interface{}) ([]User, error) {
 	var list []User
 	return list, db.Orm.Where(query, args...).Find(list).Error
+}
+
+func (*User) Insert(user *User) error {
+	return db.Orm.Create(user).Error
 }
