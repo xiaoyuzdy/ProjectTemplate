@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	"os"
 	"strings"
@@ -17,6 +18,8 @@ func InitViper() {
 			panic(err)
 		}
 		viper.WatchConfig()
+	}else {
+		fmt.Println(" no config.toml file")
 	}
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
@@ -24,6 +27,8 @@ func InitViper() {
 
 func config(viper *viper.Viper) {
 	//设置默认值
+	viper.SetDefault("system.runtime", "test")
+	viper.SetDefault("system.Debug", "true")
 	//file
 	viper.SetDefault("staticFile.ip", "http://127.0.0.1")
 	viper.SetDefault("staticFile.port", ":8081")

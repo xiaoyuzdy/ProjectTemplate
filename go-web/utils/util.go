@@ -120,10 +120,11 @@ func GetMd52(file io.Reader) (io.Reader, string, error) {
 	return &b, hex.EncodeToString(md5hash.Sum(nil)), nil
 }
 
+//根据实际需求选择skip
 func GetStackInfo() string {
 	//return string(debug.Stack())
 	line, funcName := 0, "???"
-	pc, _, line, ok := runtime.Caller(2)
+	pc, _, line, ok := runtime.Caller(3)
 	// fmt.Println(reflect.TypeOf(pc), reflect.ValueOf(pc))
 	if ok {
 		funcName = runtime.FuncForPC(pc).Name() // main.(*MyStruct).foo

@@ -13,7 +13,7 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.4.0
-	github.com/tidwall/gjson v1.3.2 // indirect
+	github.com/tidwall/gjson v1.3.2
 	github.com/urfave/cli v1.22.1
 	go.uber.org/multierr v1.2.0 // indirect
 	go.uber.org/zap v1.10.0

@@ -25,42 +25,43 @@ func ErrPrompt(businessCode int) *HttpError {
 
 //资源不存在
 func ErrNotFound(err ...error) *HttpError {
-	return newHTTPError(http.StatusNotFound, err)
+	return newHTTPError(http.StatusNotFound, err...)
 }
 
 //方法不被允许
 func ErrMethodNotAllowed(err ...error) *HttpError {
-	return newHTTPError(http.StatusMethodNotAllowed, err)
+	return newHTTPError(http.StatusMethodNotAllowed, err...)
 }
 
 //API无权限
 func ErrForbidden(err ...error) *HttpError {
-	return newHTTPError(http.StatusForbidden, err)
+	return newHTTPError(http.StatusForbidden, err...)
 }
 
 //身份认证错误
 func ErrUnauthorized(err ...error) *HttpError {
-	return newHTTPError(http.StatusUnauthorized, err)
+	return newHTTPError(http.StatusUnauthorized, err...)
 }
 
 //内部错误
 func ErrInternalServerError(err ...error) *HttpError {
-	return newHTTPError(http.StatusInternalServerError, err)
+	return newHTTPError(http.StatusInternalServerError, err...)
 }
 
 //数据没有通过validation规则，需要求改投递数据
 func ErrValidation(err ...error) *HttpError {
-	return newHTTPError(http.StatusUnprocessableEntity, err)
+	return newHTTPError(http.StatusUnprocessableEntity, err...)
 }
 
-func newHTTPError(httpState int, errMsg ...interface{}) *HttpError {
+func newHTTPError(httpState int, errMsg ...error) *HttpError {
 	he := &HttpError{
 		HttpState: httpState,
+		Code:      httpState,
 		ErrMsg:    http.StatusText(httpState),
 		Stack:     utils.GetStackInfo(),
 	}
 	if len(errMsg) > 0 {
-		he.ErrMsg = errMsg
+		he.ErrMsg = errMsg[0].Error()
 	}
 	return he
 }

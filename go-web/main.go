@@ -18,7 +18,6 @@ func main() {
 	app.Usage = "go-web"
 	app.Version = "1.0.0"
 	app.Action = allIn
-
 	app.Commands = []cli.Command{
 		{
 			Name:  "api",
