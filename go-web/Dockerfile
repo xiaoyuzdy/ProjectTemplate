@@ -24,7 +24,7 @@ WORKDIR /shortener-core
 
 COPY --from=builder /shortener-core .
 
-COPY config ./config
+COPY config.toml ./config.toml
 
 CMD ["/shortener-core/main"]
 
