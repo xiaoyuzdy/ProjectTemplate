@@ -1,4 +1,4 @@
 [system]
 Debug = true
 runtime = "test"
-
+rpcport = "1234"

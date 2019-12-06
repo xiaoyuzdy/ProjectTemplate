@@ -18,7 +18,7 @@ func InitViper() {
 			panic(err)
 		}
 		viper.WatchConfig()
-	}else {
+	} else {
 		fmt.Println(" no config.toml file")
 	}
 	viper.AutomaticEnv()
@@ -29,6 +29,7 @@ func config(viper *viper.Viper) {
 	//设置默认值
 	viper.SetDefault("system.runtime", "test")
 	viper.SetDefault("system.Debug", "true")
+	viper.SetDefault("system.rpcport", "1234")
 	//file
 	viper.SetDefault("staticFile.ip", "http://127.0.0.1")
 	viper.SetDefault("staticFile.port", ":8081")
@@ -38,6 +39,7 @@ func config(viper *viper.Viper) {
 	viper.SetDefault("mysqlServer.dbname", "default")
 	viper.SetDefault("mysqlServer.username", "default")
 	viper.SetDefault("mysqlServer.password", "default")
+
 	//redis
 	viper.SetDefault("redisServer.host", "127.0.0.1")
 	viper.SetDefault("redisServer.port", ":6379")

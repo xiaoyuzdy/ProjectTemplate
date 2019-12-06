@@ -61,5 +61,6 @@ func main() {
 
 func allIn(c *cli.Context) {
 	go cmd.CreateTable()
+	go cmd.Grpc(c)
 	cmd.Api(c)
 }
