@@ -20,6 +20,6 @@ func Route(e *echo.Echo) {
 	//web := e.Group("webapi", custMidd.TokenMiddleware)
 	//web.GET("/user/manage", webUser.UserHandler.UserManage())
 
-	//app := e.Group("api")
+	//app := e.Group("app")
 	//app.POST("/user", appUser.UserHandler.CreateUser())
 }

@@ -2,13 +2,29 @@ syntax = "proto3";
 
 package proto;
 
+import "google/app/annotations.proto";
+
 message String {
     string value = 1;
 }
 
 service HelloService {
-    rpc Hello (String) returns (String);
-    rpc GetUserInfo (String ) returns (User);
+    //    rpc Hello (String) returns (String);  //纯grpc
+    //    rpc GetUserInfo (String) returns (User); //纯grpc
+
+    rpc Hello (String) returns (String) {
+        option (google.api.http) = {
+            post: "/post"  //url
+            body: "*"
+        };
+    }
+
+    rpc GetUserInfo (String) returns (User) {
+        option (google.api.http) = {
+             get: "/get/{value}"
+        };
+    }
+
 }
 
 message User {

@@ -20,7 +20,7 @@ func main() {
 	app.Action = allIn
 	app.Commands = []cli.Command{
 		{
-			Name:  "api",
+			Name:  "app",
 			Usage: "run",
 			Subcommands: []cli.Command{
 				{
